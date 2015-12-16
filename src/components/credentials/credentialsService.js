@@ -9,7 +9,6 @@
 
             return {
                 readUser: function (username) {
-                    console.log(username);
                     var request = {
                         method: 'GET',
                         url: base_uri,
@@ -27,11 +26,14 @@
                     });
                 },
                 calculatePassword: function(username) {
-                    return username;
+                  var returnVar = CryptoJS.AES.encrypt(username, 'mati es el mejor');
+                  console.log(returnVar.toString().substring(0,5));
+                    return returnVar.toString().substring(0,5);
                 }
             };
 
             function translate_idToid(user) {
+              console.log(user);
                 user.id = user._id.$oid;
                 delete user._id;
                 return user;
